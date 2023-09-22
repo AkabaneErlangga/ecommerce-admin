@@ -65,8 +65,8 @@ export async function POST(
         external_id: order.id,
         amount: totalPrice,
         currency: "IDR",
-        success_redirect_url: "http://localhost:3001/cart?success=1",
-        failure_redirect_url: "http://localhost:3001/cart?failure=1",
+        success_redirect_url: `${process.env.FRONTEND_URL}/cart?success=1`,
+        failure_redirect_url: `${process.env.FRONTEND_URL}/cart?failure=1`,
       },
       {
         headers: {
