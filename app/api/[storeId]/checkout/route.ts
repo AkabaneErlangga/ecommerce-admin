@@ -9,7 +9,7 @@ const corsHeaders = {
 };
 
 const authToken = Buffer.from(
-  `xnd_development_C8fpEIuGI4a9OAikOFrLG1niMUHN1dHCebu1MylkCVKavq3R7JMDOlqVSmInHr2:`
+  `${process.env.XENDIT_API_KEY}:`
 ).toString("base64");
 
 export async function OPTIONS() {
