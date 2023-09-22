@@ -22,11 +22,6 @@ export async function POST(
 ) {
   const body = await req.json();
   const { productIds, totalPrice, address, phone } = body;
-  // const address = "surabaya jawa timur";
-  // const phone = "089112323454";
-  
-  console.log(address);
-  
 
   if (!productIds || productIds.length === 0) {
     return new NextResponse("Product id is required", { status: 400 });
@@ -75,11 +70,8 @@ export async function POST(
       }
     );
 
-    // console.log(`Response returned with a status of ${status}`);
-
     const { invoice_url } = data;
 
-    // console.log(`Invoice created! Visit ${invoice_url} to complete payment`);
     return NextResponse.json(
       { url: invoice_url },
       {
@@ -87,8 +79,6 @@ export async function POST(
       }
     );
   } catch (error) {
-    // console.log("Request failed", error);
-
     return new NextResponse("Internal error", { status: 500 });
   }
 }
