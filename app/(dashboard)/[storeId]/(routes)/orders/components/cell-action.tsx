@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button";
-import { BillboardColumn } from "./columns";
+import { OrderColumn } from "./columns";
 import { CopyIcon, EditIcon, TrashIcon } from "lucide-react";
 import { toast } from "react-hot-toast";
 import { useParams, useRouter } from "next/navigation";
@@ -10,7 +10,7 @@ import axios from "axios";
 import { AlertModal } from "@/components/modals/alert-modal";
 
 interface CellActionProps {
-  data: BillboardColumn;
+  data: OrderColumn;
 }
 
 export const CellAction: React.FC<CellActionProps> = ({
