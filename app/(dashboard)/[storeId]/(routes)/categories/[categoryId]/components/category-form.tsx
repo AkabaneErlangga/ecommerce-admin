@@ -28,6 +28,7 @@ import { AlertModal } from "@/components/modals/alert-modal";
 import { ApiAlert } from "@/components/ui/api-alert";
 import ImageUpload from "@/components/ui/image-upload";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { SpinnerButton } from "@/components/ui/spinner-button";
 
 interface CategoriesFormProps {
   initialData: Category | null;
@@ -182,9 +183,7 @@ export const CategoriesForm: React.FC<CategoriesFormProps> = ({
               )}
             />
           </div>
-          <Button disabled={loading} className="ml-auto" type="submit">
-            {action}
-          </Button>
+          <SpinnerButton state={loading} name={action} className="ml-auto" type="submit" />
         </form>
       </Form>
       <Separator />

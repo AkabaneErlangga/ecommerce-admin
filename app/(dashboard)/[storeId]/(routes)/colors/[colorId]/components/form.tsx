@@ -25,6 +25,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { AlertModal } from "@/components/modals/alert-modal";
+import { SpinnerButton } from "@/components/ui/spinner-button";
 
 interface ColorsFormProps {
   initialData: Color | null;
@@ -166,9 +167,7 @@ export const ColorsForm: React.FC<ColorsFormProps> = ({
               )}
             />
           </div>
-          <Button disabled={loading} className="ml-auto" type="submit">
-            {action}
-          </Button>
+          <SpinnerButton state={loading} name={action} className="ml-auto" type="submit" />
         </form>
       </Form>
       <Separator />

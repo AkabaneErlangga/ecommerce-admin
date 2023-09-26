@@ -4,7 +4,7 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { Billboard, Store } from "@prisma/client";
-import { TrashIcon } from "lucide-react";
+import { Loader2Icon, TrashIcon } from "lucide-react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useParams } from "next/navigation";
@@ -27,6 +27,7 @@ import { Input } from "@/components/ui/input";
 import { AlertModal } from "@/components/modals/alert-modal";
 import { ApiAlert } from "@/components/ui/api-alert";
 import ImageUpload from "@/components/ui/image-upload";
+import { SpinnerButton } from "@/components/ui/spinner-button";
 
 interface BillboardsFormProps {
   initialData: Billboard | null;
@@ -65,7 +66,7 @@ export const BillboardsForm: React.FC<BillboardsFormProps> = ({
   const onSubmit = async (data: BillboardsFormValues) => {
     try {
       setLoading(true);
-      if(initialData) {
+      if (initialData) {
         await axios.patch(`/api/${params.storeId}/billboards/${params.billboardId}`, data)
       } else {
         await axios.post(`/api/${params.storeId}/billboards`, data)
@@ -131,7 +132,7 @@ export const BillboardsForm: React.FC<BillboardsFormProps> = ({
               <FormItem>
                 <FormLabel>Background Image</FormLabel>
                 <FormControl>
-                  <ImageUpload 
+                  <ImageUpload
                     value={field.value ? [field.value] : []}
                     disabled={loading}
                     onChange={(url) => field.onChange(url)}
@@ -161,9 +162,7 @@ export const BillboardsForm: React.FC<BillboardsFormProps> = ({
               )}
             />
           </div>
-          <Button disabled={loading} className="ml-auto" type="submit">
-            {action}
-          </Button>
+          <SpinnerButton state={loading} name={action} className="ml-auto" type="submit" />
         </form>
       </Form>
       <Separator />

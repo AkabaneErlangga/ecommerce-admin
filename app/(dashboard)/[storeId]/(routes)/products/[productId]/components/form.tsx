@@ -28,6 +28,7 @@ import { AlertModal } from "@/components/modals/alert-modal";
 import ImageUpload from "@/components/ui/image-upload";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
+import { SpinnerButton } from "@/components/ui/spinner-button";
 
 interface ProductsFormProps {
   initialData: Product & {
@@ -353,9 +354,7 @@ export const ProductsForm: React.FC<ProductsFormProps> = ({
               )}
             />
           </div>
-          <Button disabled={loading} className="ml-auto" type="submit">
-            {action}
-          </Button>
+          <SpinnerButton state={loading} name={action} className="ml-auto" type="submit" />
         </form>
       </Form>
       <Separator />

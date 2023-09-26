@@ -26,6 +26,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { AlertModal } from "@/components/modals/alert-modal";
 import { ApiAlert } from "@/components/ui/api-alert";
+import { SpinnerButton } from "@/components/ui/spinner-button";
 
 interface SettingsFormProps {
   initialData: Store;
@@ -126,9 +127,7 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({
               )}
             />
           </div>
-          <Button disabled={loading} className="ml-auto" type="submit">
-            Save changes
-          </Button>
+          <SpinnerButton state={loading} name="Save changes" className="ml-auto" type="submit" />
         </form>
       </Form>
       <Separator />
