@@ -57,6 +57,8 @@ export async function POST(
     },
   });
 
+  console.log(process.env.FRONTEND_URL);  
+
   try {
     const { data, status } = await axios.post(
       "https://api.xendit.co/v2/invoices",
