@@ -8,9 +8,9 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "Content-Type, Authorization",
 };
 
-const authToken = Buffer.from(
-  `${process.env.XENDIT_API_KEY}:`
-).toString("base64");
+const authToken = Buffer.from(`${process.env.XENDIT_API_KEY}:`).toString(
+  "base64"
+);
 
 export async function OPTIONS() {
   return NextResponse.json({}, { headers: corsHeaders });
@@ -21,7 +21,11 @@ export async function POST(
   { params }: { params: { storeId: string } }
 ) {
   const body = await req.json();
-  const { productIds, totalPrice, address, phone } = body;
+  const { productIds, totalPrice, address, phone, province, city, district, postalCode } =
+    body;
+
+  const addressComponents = [address, district, city, province, postalCode];
+  const fullAddress = addressComponents.filter((c) => c !== null).join(", ");
 
   if (!productIds || productIds.length === 0) {
     return new NextResponse("Product id is required", { status: 400 });
@@ -39,7 +43,7 @@ export async function POST(
     data: {
       storeId: params.storeId,
       isPaid: false,
-      address: address,
+      address: fullAddress,
       phone: phone,
       orderItems: {
         create: productIds.map((productId: string) => ({
