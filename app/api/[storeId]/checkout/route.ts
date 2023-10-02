@@ -21,7 +21,7 @@ export async function POST(
   { params }: { params: { storeId: string } }
 ) {
   const body = await req.json();
-  const { productIds, totalPrice, address, phone, province, city, district, postalCode } =
+  const { productIds, totalPrice, redirectUrl, address, phone, province, city, district, postalCode } =
     body;
 
   const addressComponents = [address, district, city, province, postalCode];
@@ -66,8 +66,8 @@ export async function POST(
         external_id: order.id,
         amount: totalPrice,
         currency: "IDR",
-        success_redirect_url: `${process.env.FRONTEND_URL}/cart?success=1`,
-        failure_redirect_url: `${process.env.FRONTEND_URL}/cart?failure=1`,
+        success_redirect_url: `${redirectUrl}/cart?success=1`,
+        failure_redirect_url: `${redirectUrl}/cart?failure=1`,
       },
       {
         headers: {
